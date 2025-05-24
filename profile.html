@@ -2,26 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Board - ChainFrame</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body class="bg-black text-white font-inter">
-  <header class="p-4 flex justify-between items-center">
+  <header class="p-4 flex justify-between items-center border-b border-gray-800">
     <img src="assets/logo.png" alt="ChainFrame Logo" class="h-10" />
-    <nav>
-      <a href="explore.html" class="mr-4 text-gray-400 hover:text-white">Explore</a>
+    <nav class="flex space-x-4">
+      <a href="explore.html" class="text-gray-400 hover:text-white">Explore</a>
       <a href="upload.html" class="text-gray-400 hover:text-white">Upload</a>
     </nav>
+    <button class="bg-white text-black px-4 py-2 rounded-full">Connect Wallet</button>
   </header>
   <main class="p-6">
-    <div class="mb-6">
-      <img src="assets/avatar.png" class="w-20 h-20 rounded-full" alt="Avatar">
-      <h2 class="text-2xl font-bold mt-2">Username</h2>
-      <p class="text-gray-400">Short bio or tagline goes here.</p>
+    <div class="flex items-center space-x-4 mb-6">
+      <img src="assets/avatar.png" class="w-20 h-20 rounded-full border border-white" alt="Avatar" />
+      <div>
+        <h2 class="text-2xl font-bold">YourUsername</h2>
+        <p class="text-gray-400">This is your public board. Curate your world.</p>
+      </div>
     </div>
-    <section class="grid grid-cols-3 gap-4">
+    <section id="board" class="grid grid-cols-3 gap-4">
       <div class="bg-gray-800 h-40 rounded-lg"></div>
       <div class="bg-gray-800 h-40 rounded-lg"></div>
       <div class="bg-gray-800 h-40 rounded-lg"></div>
