@@ -94,3 +94,48 @@ main.hero {
   margin: 0 auto;
   padding-top: 100px;
 }
+
+
+/* Smooth Animations */
+.card-wrapper {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  transform: scale(0.95);
+}
+.card-wrapper.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+.card-controls button {
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.card-controls button:hover {
+  background: #eee;
+  color: #000;
+}
+nav a {
+  transition: color 0.3s ease;
+}
+nav a:hover {
+  color: #fff;
+}
+button {
+  transition: background 0.3s ease, color 0.3s ease;
+}
+button:hover {
+  background: #ccc;
+  color: #000;
+}
+.modal-fade {
+  animation: fadeInZoom 0.3s ease-out forwards;
+}
+@keyframes fadeInZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

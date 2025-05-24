@@ -196,3 +196,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+window.addEventListener("load", () => {
+  const cards = document.querySelectorAll(".card-wrapper");
+  cards.forEach((card, i) => {
+    setTimeout(() => {
+      card.classList.add("visible");
+    }, i * 100);
+  });
+});
