@@ -85,3 +85,12 @@ header {
 .hero p {
   font-size: 18px;
 }
+
+header img.logo {
+  height: 32px;
+}
+main.hero {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-top: 100px;
+}
