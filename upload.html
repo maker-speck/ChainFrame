@@ -7,22 +7,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css"/>
 </head>
-<body class="bg-black text-white font-inter">
-  <header class="p-4 flex justify-between items-center border-b border-gray-800">
-    <img src="assets/logo.png" alt="ChainFrame Logo" class="h-10" />
-    <nav class="flex space-x-4">
-      <a href="explore.html" class="text-gray-400 hover:text-white">Explore</a>
-      <a href="profile.html" class="text-gray-400 hover:text-white">My Board</a>
+<body>
+  <header>
+    <img src="assets/logo.png" alt="ChainFrame Logo" style="height: 40px;">
+    <nav>
+      <a href="explore.html">Explore</a>
+      <a href="profile.html">My Board</a>
     </nav>
-    <button class="bg-white text-black px-4 py-2 rounded-full">Connect Wallet</button>
+    <button>Connect Wallet</button>
   </header>
-  <main class="p-6 max-w-xl mx-auto">
-    <h2 class="text-3xl font-bold mb-6">Upload to Board</h2>
-    <form class="space-y-4">
-      <input type="file" class="w-full text-white bg-gray-800 p-3 rounded-lg border border-gray-700"/>
-      <input type="text" placeholder="Title or caption..." class="w-full p-3 bg-gray-800 text-white rounded-lg border border-gray-700"/>
-      <input type="text" placeholder="Tags (comma separated)" class="w-full p-3 bg-gray-800 text-white rounded-lg border border-gray-700"/>
-      <button type="submit" class="w-full bg-white text-black py-3 rounded-full font-bold">Post</button>
+  <main>
+    <h2 style="font-size: 32px; font-weight: bold; margin-bottom: 40px;">Upload to Your Board</h2>
+    <form style="max-width: 600px;">
+      <input type="file" style="margin-bottom: 20px; width: 100%; padding: 12px; background: #111; border: 1px solid #333; color: #fff;"><br/>
+      <input type="text" placeholder="Title" style="margin-bottom: 20px; width: 100%; padding: 12px; background: #111; border: 1px solid #333; color: #fff;"><br/>
+      <input type="text" placeholder="Tags" style="margin-bottom: 20px; width: 100%; padding: 12px; background: #111; border: 1px solid #333; color: #fff;"><br/>
+      <button type="submit">Post</button>
     </form>
   </main>
 </body>

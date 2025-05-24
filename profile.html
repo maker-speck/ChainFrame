@@ -7,27 +7,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css"/>
 </head>
-<body class="bg-black text-white font-inter">
-  <header class="p-4 flex justify-between items-center border-b border-gray-800">
-    <img src="assets/logo.png" alt="ChainFrame Logo" class="h-10" />
-    <nav class="flex space-x-4">
-      <a href="explore.html" class="text-gray-400 hover:text-white">Explore</a>
-      <a href="upload.html" class="text-gray-400 hover:text-white">Upload</a>
+<body>
+  <header>
+    <img src="assets/logo.png" alt="ChainFrame Logo" style="height: 40px;">
+    <nav>
+      <a href="explore.html">Explore</a>
+      <a href="upload.html">Upload</a>
     </nav>
-    <button class="bg-white text-black px-4 py-2 rounded-full">Connect Wallet</button>
+    <button>Connect Wallet</button>
   </header>
-  <main class="p-6">
-    <div class="flex items-center space-x-4 mb-6">
-      <img src="assets/avatar.png" class="w-20 h-20 rounded-full border border-white" alt="Avatar" />
-      <div>
-        <h2 class="text-2xl font-bold">YourUsername</h2>
-        <p class="text-gray-400">This is your public board. Curate your world.</p>
-      </div>
+  <main>
+    <div style="margin-bottom: 40px;">
+      <h2 style="font-size: 32px; font-weight: bold;">@YourUsername</h2>
+      <p style="color: #aaa;">This is your live board. Update it anytime.</p>
     </div>
-    <section id="board" class="grid grid-cols-3 gap-4">
-      <div class="bg-gray-800 h-40 rounded-lg"></div>
-      <div class="bg-gray-800 h-40 rounded-lg"></div>
-      <div class="bg-gray-800 h-40 rounded-lg"></div>
+    <section class="grid-board">
+      <div class="card"></div>
+      <div class="card"></div>
+      <div class="card"></div>
+      <div class="card"></div>
     </section>
   </main>
 </body>
