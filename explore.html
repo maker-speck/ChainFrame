@@ -6,24 +6,87 @@
   <title>Explore - ChainFrame</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .tags {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .tags button {
+      border: 1px solid #444;
+      background: #000;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 9999px;
+      cursor: pointer;
+    }
+    .vote-count {
+      color: #999;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <img src="assets/logo.png" alt="ChainFrame Logo" style="height: 40px;">
+    <img src="assets/logo.png" alt="ChainFrame Logo" class="logo" />
     <nav>
       <a href="profile.html">My Board</a>
       <a href="upload.html">Upload</a>
     </nav>
-    <button>Connect Wallet</button>
+    <button id="connect-wallet">Connect Wallet</button>
   </header>
   <main>
-    <h2 style="font-size: 32px; font-weight: bold; margin-bottom: 40px;">Trending Boards</h2>
-    <section class="grid-board">
-      <div class="card"></div>
-      <div class="card"></div>
-      <div class="card"></div>
-      <div class="card"></div>
+    <h2 style="font-size: 32px; font-weight: bold; margin-bottom: 20px;">Trending Boards</h2>
+
+    <div class="tags">
+      <button data-tag="vaporwave">#vaporwave</button>
+      <button data-tag="noir">#noir</button>
+      <button data-tag="dreamcore">#dreamcore</button>
+      <button data-tag="all">Show All</button>
+    </div>
+
+    <section class="grid-board" id="board-grid">
+      <div class="card-wrapper" data-tags="vaporwave noir">
+        <img src="assets/avatar.png" style="width: 100%; height: 100%; object-fit: cover;" />
+        <button class="vote-btn">🔺 Vote</button>
+        <div class="vote-count">0 votes</div>
+      </div>
+      <div class="card-wrapper" data-tags="dreamcore">
+        <img src="assets/avatar.png" style="width: 100%; height: 100%; object-fit: cover;" />
+        <button class="vote-btn">🔺 Vote</button>
+        <div class="vote-count">0 votes</div>
+      </div>
     </section>
   </main>
+  <script>
+    const tagButtons = document.querySelectorAll(".tags button");
+    const cards = document.querySelectorAll(".card-wrapper");
+
+    tagButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const tag = button.dataset.tag;
+        cards.forEach(card => {
+          const tags = card.dataset.tags.split(" ");
+          card.style.display = (tag === "all" || tags.includes(tag)) ? "block" : "none";
+        });
+      });
+    });
+
+    // Voting logic
+    document.querySelectorAll(".card-wrapper").forEach((card, index) => {
+      const voteBtn = card.querySelector(".vote-btn");
+      const voteCount = card.querySelector(".vote-count");
+      const voteKey = `chainframe_votes_${index}`;
+      let votes = parseInt(localStorage.getItem(voteKey)) || 0;
+      voteCount.textContent = `${votes} votes`;
+
+      voteBtn.addEventListener("click", () => {
+        votes += 1;
+        localStorage.setItem(voteKey, votes);
+        voteCount.textContent = `${votes} votes`;
+      });
+    });
+  </script>
 </body>
 </html>
