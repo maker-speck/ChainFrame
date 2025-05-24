@@ -69,3 +69,48 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".edit-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      const card = e.target.closest(".card-wrapper");
+      const img = card.querySelector("img");
+      const modal = document.createElement("div");
+      modal.style.position = "fixed";
+      modal.style.top = "0";
+      modal.style.left = "0";
+      modal.style.width = "100%";
+      modal.style.height = "100%";
+      modal.style.background = "rgba(0,0,0,0.85)";
+      modal.style.display = "flex";
+      modal.style.justifyContent = "center";
+      modal.style.alignItems = "center";
+      modal.style.zIndex = "1000";
+      modal.innerHTML = `
+        <div style="background:#111;padding:40px;border-radius:16px;text-align:center;max-width:400px;width:100%;">
+          <h3 style="color:white;margin-bottom:16px;">Edit Image</h3>
+          <input type="file" id="edit-image" accept="image/*" style="margin-bottom:20px;"/>
+          <input type="text" id="caption-input" placeholder="New caption..." style="width:100%;padding:10px;margin-bottom:20px;background:#000;color:#fff;border:1px solid #333;border-radius:8px;" />
+          <button id="save-edit" style="padding:10px 20px;border-radius:9999px;background:white;color:black;">Save</button>
+          <div id="cancel-edit" style="margin-top:20px;color:#aaa;cursor:pointer;">Cancel</div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+
+      // Handle file change
+      document.getElementById("edit-image").addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        if (file && file.type.startsWith("image/")) {
+          const reader = new FileReader();
+          reader.onload = () => {
+            img.src = reader.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      document.getElementById("cancel-edit").onclick = () => modal.remove();
+      document.getElementById("save-edit").onclick = () => modal.remove();
+    });
+  });
+});
