@@ -114,3 +114,85 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const cardSection = document.querySelector(".grid-board");
+
+  function saveBoardToLocalStorage() {
+    const images = [...document.querySelectorAll(".card-wrapper img")].map(img => img.src);
+    localStorage.setItem("chainframe_board", JSON.stringify(images));
+  }
+
+  function loadBoardFromLocalStorage() {
+    const saved = JSON.parse(localStorage.getItem("chainframe_board") || "[]");
+    if (saved.length && cardSection) {
+      cardSection.innerHTML = "";
+      saved.forEach(src => {
+        const wrapper = document.createElement("div");
+        wrapper.className = "card-wrapper";
+        wrapper.innerHTML = `
+          <div class="card-controls">
+            <button class="edit-btn">Edit</button>
+            <button class="delete-btn">Delete</button>
+          </div>
+          <img src="${src}" style="width:100%;height:100%;object-fit:cover;">
+        `;
+        cardSection.appendChild(wrapper);
+      });
+    }
+  }
+
+  loadBoardFromLocalStorage();
+
+  // Deletion
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("delete-btn")) {
+      const card = e.target.closest(".card-wrapper");
+      card.remove();
+      saveBoardToLocalStorage();
+    }
+  });
+
+  // Editing
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("edit-btn")) {
+      const card = e.target.closest(".card-wrapper");
+      const img = card.querySelector("img");
+
+      const modal = document.createElement("div");
+      modal.style.position = "fixed";
+      modal.style.top = "0";
+      modal.style.left = "0";
+      modal.style.width = "100%";
+      modal.style.height = "100%";
+      modal.style.background = "rgba(0,0,0,0.85)";
+      modal.style.display = "flex";
+      modal.style.justifyContent = "center";
+      modal.style.alignItems = "center";
+      modal.style.zIndex = "1000";
+      modal.innerHTML = `
+        <div style="background:#111;padding:40px;border-radius:16px;text-align:center;max-width:400px;width:100%;">
+          <h3 style="color:white;margin-bottom:16px;">Edit Image</h3>
+          <input type="file" id="edit-image" accept="image/*" style="margin-bottom:20px;" />
+          <button id="save-edit" style="padding:10px 20px;border-radius:9999px;background:white;color:black;">Save</button>
+          <div id="cancel-edit" style="margin-top:20px;color:#aaa;cursor:pointer;">Cancel</div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+
+      document.getElementById("cancel-edit").onclick = () => modal.remove();
+      document.getElementById("edit-image").addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        if (file && file.type.startsWith("image/")) {
+          const reader = new FileReader();
+          reader.onload = () => {
+            img.src = reader.result;
+            saveBoardToLocalStorage();
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+      document.getElementById("save-edit").onclick = () => modal.remove();
+    }
+  });
+});
