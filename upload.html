@@ -9,7 +9,7 @@
 </head>
 <body>
   <header>
-    <img src="assets/logo.png" alt="ChainFrame Logo" style="height: 40px;">
+    <img src="assets/logo.png" alt="ChainFrame Logo" class="logo">
     <nav>
       <a href="explore.html">Explore</a>
       <a href="profile.html">My Board</a>
@@ -19,11 +19,20 @@
   <main>
     <h2 style="font-size: 32px; font-weight: bold; margin-bottom: 40px;">Upload to Your Board</h2>
     <form style="max-width: 600px;">
-      <input type="file" style="margin-bottom: 20px; width: 100%; padding: 12px; background: #111; border: 1px solid #333; color: #fff;"><br/>
+      <div id="drop-zone" style="border: 2px dashed #444; padding: 40px; text-align: center; border-radius: 12px; margin-bottom: 20px;">
+        <p>Drag & Drop your image or click to select</p>
+        <input type="file" id="image-input" style="display: none;" />
+      </div>
       <input type="text" placeholder="Title" style="margin-bottom: 20px; width: 100%; padding: 12px; background: #111; border: 1px solid #333; color: #fff;"><br/>
       <input type="text" placeholder="Tags" style="margin-bottom: 20px; width: 100%; padding: 12px; background: #111; border: 1px solid #333; color: #fff;"><br/>
       <button type="submit">Post</button>
     </form>
   </main>
+  <script src="js/app.js"></script>
+  <script>
+    document.querySelector("#drop-zone").addEventListener("click", () => {
+      document.querySelector("#image-input").click();
+    });
+  </script>
 </body>
 </html>

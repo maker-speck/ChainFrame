@@ -72,3 +72,16 @@ main {
   height: 200px;
   border-radius: 16px;
 }
+
+img.logo {
+  height: 32px;
+}
+header {
+  padding: 20px 40px;
+}
+.hero h1 {
+  font-size: 48px;
+}
+.hero p {
+  font-size: 18px;
+}
