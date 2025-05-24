@@ -87,6 +87,41 @@
         voteCount.textContent = `${votes} votes`;
       });
     });
+  
+    // Darkroom logic
+    cards.forEach((card) => {
+      card.addEventListener("click", (e) => {
+        if (!e.target.classList.contains("vote-btn")) {
+          const imgSrc = card.querySelector("img").src;
+          const tags = card.dataset.tags;
+          const votes = card.querySelector(".vote-count").textContent;
+
+          const overlay = document.createElement("div");
+          overlay.style.position = "fixed";
+          overlay.style.top = 0;
+          overlay.style.left = 0;
+          overlay.style.width = "100%";
+          overlay.style.height = "100%";
+          overlay.style.background = "rgba(0, 0, 0, 0.9)";
+          overlay.style.display = "flex";
+          overlay.style.justifyContent = "center";
+          overlay.style.alignItems = "center";
+          overlay.style.zIndex = 10000;
+
+          overlay.innerHTML = \`
+            <div style="position: relative; text-align: center; max-width: 80%;">
+              <img src="\${imgSrc}" style="max-width: 100%; border-radius: 16px; margin-bottom: 20px;" />
+              <div style="color: white;">Tags: \${tags}</div>
+              <div style="color: #ccc; margin-top: 10px;">\${votes}</div>
+              <div style="margin-top: 20px; cursor: pointer; color: #aaa;" id="close-darkroom">Close</div>
+            </div>
+          \`;
+
+          overlay.addEventListener("click", () => overlay.remove());
+          document.body.appendChild(overlay);
+        }
+      });
+    });
   </script>
 </body>
 </html>
